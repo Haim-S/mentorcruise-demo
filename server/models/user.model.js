@@ -39,9 +39,10 @@ expertise: {
                 default: [EXPERTISE.FULLSTACK_DEVELOPER],
               },
 phoneNumber: String,
+AvailabilityByPhone: Number,
 about: {type: String, default: defalteAboutyou},
 WorkExperience: {type: String, default:defalteWorkExperience},
-rating: Number,
+rating: {type:Number, default: 2},
 imgSRC: {type:String, default: defaltePicUser},
 
 jwt_ac_token: {type: String},
