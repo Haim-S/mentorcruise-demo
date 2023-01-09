@@ -23,6 +23,10 @@ exports.register = async (req, res) => {
 
 }
 
+
+
+
+
 exports.login = async (req, res, next) =>{
 // await requestValidator(loginRequestSchema, req.body, next);
    console.log(req.body)
@@ -34,7 +38,11 @@ if(!iscorrectPassword) return next(new UnauthorizeError());
 const accessToken = jwtTokenService.createAccessToken(user._id);
 const refreshToken = jwtTokenService.createRefreshToken(user._id);
 user.setJwtTokens(accessToken, refreshToken);
-console.log(accessToken)
+
+res.cookie("acc_token" , `${accessToken}`, {
+    path: "/data/user",
+    httpOnly: true
+});
 res.send({accessToken, refreshToken});
 
 

@@ -4,7 +4,8 @@ const { UnauthorizeError } = require("../error/Errors");
 
 const authJwtToken = (req, res, next) =>{
     try {
-        const token = req.headers["access-token"];
+        const token = req.cookies.acc_token;
+        //  req.headers["access-token"];
         if(!token)return res.sendStatus(401);
         JwtTokenService.verifyAccessToken(token);
         next();
@@ -19,4 +20,18 @@ const authJwtToken = (req, res, next) =>{
     }
 }
 
-module.exports = {authJwtToken};
+const authUserJwt = (req, res, next) => {
+    try {
+        // const token = req.cookies.acc_token;
+        // const token =  req.headers.authorization;
+        console.log(token)
+         const token = req.headers["access-token"];
+        if(!token)return res.sendStatus(401);
+        JwtTokenService.verifyAccessToken(token);
+        next();
+    } catch (error) {
+        res.send(error);
+    }
+}
+
+module.exports = {authJwtToken, authUserJwt};

@@ -2,6 +2,7 @@ require("dotenv/config");
 const cors = require("cors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+// const session = require('express-session')
 const router = require("./routes/export.routes");
 const errorHandler = require("./error/errorHandler");
 const app = express();
@@ -17,9 +18,20 @@ const httpServer = createServer(app);
 app.use(cookieParser());
 app.use(cors({origin: "*"}));
 app.use(express.json());
+
+// app.use(session({
+//     secret: "hello"
+// }));
 app.use(router);
 app.use(errorHandler);
-// app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
+
+// app.use(
+//     cors({
+//       origin: '*',
+//       credentials: true,
+//     }),
+//   );
 
 
 // All things that belong to socket

@@ -6,6 +6,8 @@ const {emailRegex} = require("../constants/regex.constants");
 const { USER_ROLE, EXPERTISE} = require("../constants/user.constants");
 const {defaltePicUser} = require("../utils/random/picRandom");
 const {defalteWorkExperience, defalteAboutyou} = require("../utils/random/sentencesRandom");
+
+
 const userSchema = new Schema({
 email: {
         type: String,
